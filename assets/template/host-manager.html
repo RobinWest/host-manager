@@ -1,0 +1,10 @@
+<h1>Host Manager</h1>
+
+<ul>
+	<li ng-repeat="entry in entries">
+		<input ng-model="entry.active" type="checkbox"><host-input host-entry="entry"></host-input>
+	</li>
+</ul>
+
+<hr>
+{{ entries }}

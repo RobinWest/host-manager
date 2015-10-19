@@ -1,0 +1,16 @@
+<input ng-model="hostEntry.address" placeholder="127.0.0.1" type="text" ng-disabled="!hostEntry.active">
+
+<ol>
+	<li ng-repeat="entry in hostEntry.entries">
+		<input ng-model="entry.active" type="checkbox">
+		<input ng-model="entry.host" placeholder="www.your-domain.com" type="text" ng-disabled="!hostEntry.active || !entry.active">
+	</li>
+<!-- 	<li>
+		<input ng-focus="addEntry(hostEntry)" type="text">
+	</li> -->
+</ol>
+<button ng-click="addEntry(hostEntry)">Add entry</button>
+<br>
+---
+<br>
+{{hostEntry}}

@@ -1,0 +1,27 @@
+[{
+	"active": true,
+	"address": "127.0.0.1",
+	"entries": [
+		{
+			"host": "www.google.com",
+			"active": true
+		},
+		{
+			"host": "www.steampowered.com",
+			"active": true
+		}
+	]
+},{
+	"active": false,
+	"address": "127.0.0.2",
+	"entries": [
+		{
+			"host": "www.google.com",
+			"active": true
+		},
+		{
+			"host": "www.steampowered.com",
+			"active": false
+		}
+	]
+}]

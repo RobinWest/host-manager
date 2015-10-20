@@ -5,12 +5,5 @@
 		<input ng-model="entry.active" type="checkbox">
 		<input ng-model="entry.host" placeholder="www.your-domain.com" type="text" ng-disabled="!hostEntry.active || !entry.active">
 	</li>
-<!-- 	<li>
-		<input ng-focus="addEntry(hostEntry)" type="text">
-	</li> -->
 </ol>
 <button ng-click="addEntry(hostEntry)">Add entry</button>
-<br>
----
-<br>
-{{hostEntry}}

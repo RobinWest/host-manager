@@ -1,12 +1,14 @@
-<h1>Host Manager</h1>
-
-<ul>
-	<li ng-repeat="entry in entries">
-		<input ng-model="entry.active" type="checkbox"><host-input host-entry="entry"></host-input>
-	</li>
-</ul>
-<button ng-click="parseEntries()">Parse</button>
-<hr>
+<div ng-init="init()">
+	<h1>Host Manager</h1>
+	
+	<ul ng-if="entries.length">
+		<li ng-repeat="entry in entries">
+			<input ng-model="entry.active" type="checkbox"><host-input host-entry="entry"></host-input>
+		</li>
+	</ul>
+	<button ng-click="parseEntries()">Parse</button>
+	<hr>
 <pre>
 {{ parsedHosts }}
 </pre>
+</div>

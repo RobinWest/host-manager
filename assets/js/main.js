@@ -3,10 +3,10 @@
 
 var fs = require('fs');
 
-fs.readdir('C:\\Windows\\System32\\drivers\\etc', function(err, files){
-	console.log(err);
-	console.log(files);
-});
+// fs.readdir('C:\\Windows\\System32\\drivers\\etc', function(err, files){
+// 	console.log(err);
+// 	console.log(files);
+// });
 
 // TODO niceties
 // - Taborder
@@ -49,40 +49,14 @@ angular
 			scope: {},
 			templateUrl: 'assets/template/host-manager.html',
 			controller: function($scope, $element, $attrs, hostParser){
-				$scope.entries = [];
+				$scope.entries;
 
-				$scope.entries = [
-					{
-						active: true,
-						address: '127.0.0.1',
-						entries: [
-							{
-								host: 'www.google.com',
-								active: true
-							},
-							{
-								host: 'www.steampowered.com',
-								active: true
-							}
-						]
-					},{
-						active: false,
-						address: '127.0.0.2',
-						entries: [
-							{
-								host: 'www.google.com',
-								active: true
-							},
-							{
-								host: 'www.steampowered.com',
-								active: true
-							}
-						]
-					}
-				];
+				$scope.init = function(){
+					$scope.entries = hostParser.readFile('assets/json/hosts_custom.json');
+				};
 
 				$scope.parseEntries = function(){
-					if($scope.entries.length)
+					if(angular.isDefined($scope.entries) && $scope.entries.length)
 						$scope.parsedHosts = hostParser.parse($scope.entries);
 				};
 
@@ -105,6 +79,10 @@ angular
 		}
 	})
 	.service('hostParser', function(){
+		this.readFile = function(filepath){
+			// TODO validation, async
+			return JSON.parse(fs.readFileSync(filepath, 'utf8'));
+		};
 		this.toJSON = function(data){
 		};
 

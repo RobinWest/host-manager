@@ -1,3 +1,6 @@
+// cd Documents\nwjs
+// nw.exe R:\develop\host-manager
+
 var fs = require('fs');
 
 fs.readdir('C:\\Windows\\System32\\drivers\\etc', function(err, files){
@@ -40,12 +43,12 @@ angular
 	.config(function(){
 		// TODO routes mapping to file
 	})
-	.directive('hostManager', function(){
+	.directive('hostManager', function(hostParser){
 		return {
 			restrict: 'E',
 			scope: {},
 			templateUrl: 'assets/template/host-manager.html',
-			controller: function($scope, $element, $attrs){
+			controller: function($scope, $element, $attrs, hostParser){
 				$scope.entries = [];
 
 				$scope.entries = [
@@ -78,6 +81,11 @@ angular
 					}
 				];
 
+				$scope.parseEntries = function(){
+					if($scope.entries.length)
+						$scope.parsedHosts = hostParser.parse($scope.entries);
+				};
+
 
 			}
 		}
@@ -95,4 +103,30 @@ angular
 				};
 			}
 		}
+	})
+	.service('hostParser', function(){
+		this.toJSON = function(data){
+		};
+
+		this.parse = function(json){
+			var string = '';
+
+			angular.forEach(json, function(entry){
+				if(entry.active === false)
+					return;
+
+				var band = entry.address;
+
+				angular.forEach(entry.entries, function(hostname){
+					if(hostname.active === false)
+						return;
+
+					band += ' ' + hostname.host;
+				});
+
+				string += band + '\n';
+			});
+
+			return string;
+		};
 	})

@@ -5,6 +5,8 @@
 		<input ng-model="entry.active" type="checkbox"><host-input host-entry="entry"></host-input>
 	</li>
 </ul>
-
+<button ng-click="parseEntries()">Parse</button>
 <hr>
-{{ entries }}
+<pre>
+{{ parsedHosts }}
+</pre>
